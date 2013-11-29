@@ -7,6 +7,7 @@ import os
 top = Tkinter.Tk()
 
 def readline():
+   ''' This is a dead function was using for testing'''
    f=file("/etc/group")
    while True:
       line = f.readline()
@@ -36,9 +37,10 @@ def tcpreplay():
 
 
 def helloCallBack():
+   ''' This was going to be used as a welcome message'''
    tkMessageBox.showinfo( "Hello Python", "Welcome to NSM Hero!!")
 
-img = PhotoImage(file="/home/cpfaff/Downloads/download.gif")
+img = PhotoImage(file="./images/background.gif")
 panel = Label(top, image=img)
 
 panel.grid(row=0, column=0, columnspan=2, rowspan=7, sticky=W+E+N+S, padx=5, pady=5)
