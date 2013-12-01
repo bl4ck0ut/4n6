@@ -1,30 +1,22 @@
 import Tkinter
 import tkMessageBox
+import subprocess
 from Tkinter import *
 from ttk import Frame, Button, Style
 import os
 
 top = Tkinter.Tk()
 
-def readline():
-   f=file("/etc/group")
-   while True:
-      line = f.readline()
-      if len(line) == 0:
-         break
-      print line.strip()
-   f.close()
+def gedit_localrules():
+   subprocess.Popen(["gedit", "/etc/nsm/rules/local.rules"])
 
 def sguil():
-   import subprocess
    subprocess.Popen(["sguil.tk"])
 
 def lr_term1():
-   import subprocess
    subprocess.Popen(["xfce4-terminal", "--working-directory=./hero1/56.101/"])
 
 def lr_term2():
-   import subprocess
    subprocess.Popen(["xfce4-terminal", "--working-directory=./hero1/56.102/"])
 
 def tcpreplay():
@@ -32,7 +24,6 @@ def tcpreplay():
       button["text"] = "Hero #1 running"
       button["bg"] = "green"
       button["activebackground"] = "green"
-      import subprocess
       subprocess.Popen(["/usr/bin/pulledpork.pl", "-n", "-c" ,"/etc/nsm/pulledpork/pulledpork.conf"])
       subprocess.Popen(["/usr/sbin/nsm_sensor_ps-restart" ,"--only-snort-alert"])
       subprocess.Popen(["tcpreplay", "--intf1=eth0", "./hero1/network.pcap"])
@@ -41,15 +32,13 @@ def tcpreplay():
       button["text"] = "Start Hero #1"
       button["bg"] = "red"
       button["activebackground"] = "red"
-      import subprocess
       subprocess.Popen(["killall", "tcpreplay"])
 
+def hero1intro():
+   tkMessageBox.showinfo( "Hero #1", "Welcome to NSM Hero!! \n This is the first Hero. This is the first hero since it was my first I had to deal with back in early 2000. The object will be to start sguil then start hero #1 and wait. \n \n You are now in the hot seat to determine what is going on. I have created a skeleton snort rule that will fire , again this is generic. The idea is to figure out what it is and rewrite the rule and rerun the hero and see how you do. There is a live response section that will help you along the way as well.")
 
-def helloCallBack():
-   tkMessageBox.showinfo( "Hello Python", "Welcome to NSM Hero!!")
-
-B = Tkinter.Button(top, text ="Intro", command = helloCallBack)
-C = Tkinter.Button(top, text ="check / Change Hero Rule", command = readline)
+B = Tkinter.Button(top, text ="Intro", command = hero1intro)
+C = Tkinter.Button(top, text ="check / Change Hero Rule", command = gedit_localrules)
 D = Tkinter.Button(top, text ="start sguil", command = sguil)
 button = Tkinter.Button(top, activebackground = "red", text ="Start Hero #1", command = tcpreplay, bg = "red")
 system1 = Tkinter.Button(top, text ="192.168.56.101 Live Response", command = lr_term1)

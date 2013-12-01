@@ -1,53 +1,36 @@
 import Tkinter
 import tkMessageBox
+import subprocess
 from Tkinter import *
 from ttk import Frame, Button, Style
-import os
 
 top = Tkinter.Tk()
 
-def readline():
-   ''' This is a dead function was using for testing'''
-   f=file("/etc/group")
-   while True:
-      line = f.readline()
-      if len(line) == 0:
-         break
-      print line.strip()
-   f.close()
-
-def sguil():
-   import subprocess
+def hero1():
+   subprocess.Popen(["cp", "./hero1/rule/hero1.rule", "/etc/nsm/rules/local.rules"])
    subprocess.Popen(["sudo","python","./hero1/hero1.py"])
+
+def hero2():
+   subprocess.Popen(["sudo","python","./hero2/hero2.py"])
 
 def tcpreplay():
    if button["text"] == "Start Hero #1":
       button["text"] = "Hero #1 running"
       button["bg"] = "green"
       button["activebackground"] = "green"
-      import subprocess
       subprocess.Popen(["tcpreplay", "--intf1=eth0", "/home/cpfaff/Desktop/98.pcap"])
       return
    else:
       button["text"] = "Start Hero #1"
       button["bg"] = "red"
       button["activebackground"] = "red"
-      import subprocess
       subprocess.Popen(["killall", "tcpreplay"])
-
-
-def helloCallBack():
-   ''' This was going to be used as a welcome message'''
-   tkMessageBox.showinfo( "Hello Python", "Welcome to NSM Hero!!")
 
 img = PhotoImage(file="./images/background.gif")
 panel = Label(top, image=img)
-
 panel.grid(row=0, column=0, columnspan=2, rowspan=7, sticky=W+E+N+S, padx=5, pady=5)
-
-
-D = Tkinter.Button(top, text ="NSM HERO #1", command = sguil)
-D.grid(row=2, column=0, sticky=W+E, columnspan=4)
-D = Tkinter.Button(top, text ="NSM HERO #2", command = sguil)
-D.grid(row=3, column=0, sticky=W+E, columnspan=4)
+A = Tkinter.Button(top, text ="NSM HERO #1", command = hero1)
+A.grid(row=2, column=0, sticky=W+E, columnspan=4)
+B = Tkinter.Button(top, text ="NSM HERO #2", command = hero2)
+B.grid(row=3, column=0, sticky=W+E, columnspan=4)
 top.mainloop()
