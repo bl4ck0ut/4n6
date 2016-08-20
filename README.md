@@ -1,2 +1,2 @@
-nsmhero
+4n6 - DFIR tool
 =======
