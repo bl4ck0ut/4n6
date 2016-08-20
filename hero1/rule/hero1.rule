@@ -1,1 +1,0 @@
-alert tcp $HOME_NET any -> any any (msg:"NSM HERO #1 - suspicious file   readme.eml download attempt"; flow:from_client,established; content:"readme.eml"; nocase; classtype:attempted-user; sid:9000001 ; rev:1;)
