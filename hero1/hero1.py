@@ -25,7 +25,7 @@ def tcpreplay():
       button["bg"] = "green"
       button["activebackground"] = "green"
       subprocess.Popen(["/usr/bin/pulledpork.pl", "-n", "-c" ,"/etc/nsm/pulledpork/pulledpork.conf"])
-      subprocess.Popen(["/usr/sbin/nsm_sensor_ps-restart" ,"--only-snort-alert"])
+      subprocess.Popen(["/usr/sbin/nsm_sensor_ps-restart"])
       subprocess.Popen(["tcpreplay", "--intf1=eth0", "./hero1/network.pcap"])
       return
    else:
