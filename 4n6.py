@@ -23,14 +23,14 @@ def arena5():
    subprocess.Popen(["sudo","python","./arena2/arena5.py"])
 
 def tcpreplay():
-   if button["text"] == "Start Hero #1":
-      button["text"] = "Hero #1 running"
+   if button["text"] == "Start Arena #1":
+      button["text"] = "Arena #1 running"
       button["bg"] = "green"
       button["activebackground"] = "green"
       subprocess.Popen(["tcpreplay", "--intf1=eth0", "/home/xxxx/Desktop/98.pcap"])
       return
    else:
-      button["text"] = "Start Hero #1"
+      button["text"] = "Start Arena #1"
       button["bg"] = "red"
       button["activebackground"] = "red"
       subprocess.Popen(["killall", "tcpreplay"])
